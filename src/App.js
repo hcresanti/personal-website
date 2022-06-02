@@ -1,73 +1,60 @@
 import React from "react";
 import "./main.css";
-import MatterComp from "./matter.js";
+import "bootstrap-icons/font/bootstrap-icons.css";
+import { Link } from "react-scroll"
 
-const reactChatImg = "https://lh4.googleusercontent.com/I0Ck6HnxmAQW39WjTvQvhoLwOPgHigAuD2aQP8f5J0O_RZMgNk-73D7kQZK2scsiwQLXJKnl_XL9x7TNqvKDfIBRZb-bB9brgatfEB8TnciV12aUNSYpYzWrRvfdegT-=w1280"
-const golImg = "https://lh6.googleusercontent.com/XnsBE_2fYGWU64GOtur7Vgs_fDUhOLFzg8uKVGaWl9yD3otsS5JgNaOpXbn-Fasx4aNLotNJR-IZf9c_Uwr1wUgIlQCIt0xH9SYE1XqoZnfuoMkgm48yMKj9BfPbL5cXsw=w1280"
-const ricoShooterImg = "https://lh6.googleusercontent.com/UMsr8U0Jp-SJdpk1jUTsvfBqmWzN49WLEW0J85-uHlyls-HlVViwo-GP7ZgXT9hZZvqII3niTNGxWuNGg9BflCcC2y9anKUB_WS_Dt0sku7JQNZvqeO_ZbynQJcSNzL7Wg=w1280"
-const clScannerImg = "https://lh6.googleusercontent.com/M1PNY4La28LRdlyQqJZlXrhWetApvLwHL5VjV3ToW6KFjhjV7fv_dqcrYChn7IV1EypBuo-cBSHpkwa4_ye6juDmJKteIZ65ohiGjWCxMnJLq4YBZPKfORI4ifq7o9rkwQ=w1280"
-const minecraftImg = "https://lh6.googleusercontent.com/ykKkh7LFGxjKtlruJVuXDG6MOLx2d32APCyjNCw8HC3b-KXUlOcRWNflVVbiF-HEnrgEytnGfo2mzvdl3Ml2eyb8THvp8ZfJ0rBJdtFGXXlnWu2LK-nkQ345nq8r8UdSBA=w1280"
+const googleImgPrefix = "https://drive.google.com/uc?id="
+
+const reactChatImg =    "1dobk2mqXYqNpuaqnt8ph0sQjHGbtduu7"
+const golImg =          "1yB4Is-Qehlu1w543uGV3Fz5-pVP62hv8"
+const ricoShooterImg =  "1TSG-vyvfGZCgoEb08ZHva2OlnMPQWhV-"
+const clScannerImg =    "1RXAJmyUpEH1cqpKUEpkQf99NYSg8kj7x"
+const minecraftImg =    "1KB32DVpQvDuD4fTpjfpxY4bBIOYZ8rum"
+const kartRacerImg =    "1UVPdWrYGn-xPA-RJ6cUUqQO2RyvxgAV9"
 
 function App() {
 
   return (
     <div className="background">
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css"/>
+      
+      <div className="sidebar">
+        { sidebarContent() }
+      </div>
 
-      {/* <div className="sidebar">
-        <label>👨‍💻</label>
-      </div> */}
+      <div className="main" id="main">
 
-      <div className="main">
-
-      <MatterComp/>
-
-        <div className="name sub">
+        <div className="name sub margin-t-25">
           hello! my name is
         </div>
-
-        <div className="name">
+        <div className="name padding-b-15 margin-b-10">
           Hayden Cresanti
         </div>
 
-        <div className="text-header">
-          I'm a Software Engineer
-        </div>
+        { section (introSection())}
 
-        <div className="text-body">
-          In 2021 I graduated from the University of Maryland, College Park 
-          I received a Bachelor's Degree in Computer Science with a minor in Philosophy
-        </div>
 
-        <div className="name sub">
+        <div className="name sub padding-tb-10" id="links">
+          my links
+        </div>
+        { section(linkSection()) }
+
+        <div className="name sub padding-tb-10" id="skills">
           my skills
         </div>
-
         { section(skillSection()) }
 
-        <div className="name sub">
+        <div className="name sub padding-tb-10" id="projects">
           my projects
         </div>
-
         <div className="section-container">
           { projectSection(reactChatSection()) }
           { projectSection(minecraftSection()) }
           { projectSection(golSection()) }
           { projectSection(clScannerSection()) }
           { projectSection(ricoShooterSection()) }
+          { projectSection(karRacerSection()) }
         </div>
-
-        <div className="name sub">
-          my hobbies
-        </div>
-
-        { section(hobbySection()) }
-
-        <div className="name sub">
-          my art
-        </div>
-
-        { section(artSection()) }
       </div>
     </div>
   );
@@ -79,7 +66,7 @@ function App() {
 
 function section(innerBits) {
   return (
-    <div className="section">
+    <div className="section margin-b-15">
       { innerBits }
     </div>
   );
@@ -97,15 +84,15 @@ function projectTemplate(languageIcon, imgLink, headerText, bodyText) {
   return (
     <>
       <label className="project-icon">
-        <i class={languageIcon + " project-language-icon"}></i>
+        <i className={languageIcon + " project-language-icon"}></i>
       </label>
       <div>
-        <img className="project-img" src={imgLink}/>
+        <img className="project-img" src={googleImgPrefix + imgLink} alt=""/>
       </div>
-      <div className="text-header">
+      <div className="project-header">
         {headerText}
       </div>
-      <div className="text-body">
+      <div className="project-body">
         {bodyText}
       </div>
     </>
@@ -116,54 +103,105 @@ function projectTemplate(languageIcon, imgLink, headerText, bodyText) {
 
 // CONTENT 
 
-function skillSection() {
+function sidebarContent() {
   return (
     <>
-      <div className="text-header">Languages</div>
-      <div class="skill-grid">
-        <i class="devicon-java-plain skill-icon" title="Java"></i>
-        <i class="devicon-python-plain skill-icon" title="Python"></i>
-        <i class="devicon-csharp-plain skill-icon" title="C#"></i>
-        <i class="devicon-javascript-plain skill-icon" title="JavaScript"></i>
-        <i class="devicon-html5-plain skill-icon" title="HTML"></i>
-        <i class="devicon-css3-plain skill-icon" title="CSS"></i>
-        <i class="devicon-swift-plain skill-icon" title="Swift"></i>
+      <label>👨‍💻</label>
+      <div className="sidebar-grid vertical-center">
+        <Link className="bi-house-door-fill sidebar-icon" 
+              to="main" spy={true} smooth={true} duration={500}/>
+        <Link className="bi-share-fill sidebar-icon" 
+              to="links" spy={true} smooth={true} duration={500}/>
+        <Link className="bi-clipboard-data-fill sidebar-icon" 
+              to="skills" spy={true} smooth={true} duration={500}/>
+        <Link className="bi-easel sidebar-icon" 
+              to="projects" spy={true} smooth={true} duration={500}/>
       </div>
+    </>
+  )
+}
 
-      <div className="text-header">Frameworks + Libraries</div>
-      <div class="skill-grid">
-        <i class="devicon-react-original skill-icon" title="React"></i>
-        <i class="devicon-nodejs-plain skill-icon" title="Node.JS"></i>
-        <i class="devicon-express-original skill-icon" title="Express"></i>
-        <i class="devicon-mysql-plain skill-icon" title="MySQL"></i>
-        <i class="devicon-spring-plain skill-icon" title="Spring"></i>
-        <i class="devicon-selenium-original skill-icon" title="Selenium"></i>
-        <i class="devicon-dotnetcore-plain skill-icon" title=".NET Core"></i>
+function introSection() {
+  return (
+    <div className="padding-15">
+      <div className="text-header margin-b-10">
+        I'm a Software Engineer
       </div>
+      <div className="text-body">
+        In 2021 I graduated from the University of Maryland, College Park
+      </div>
+      <div className="text-body">
+        I received a Bachelor's Degree in Computer Science with a minor in Philosophy
+      </div>
+    </div>
+  )
+}
 
-      <div className="text-header">Developer Tools</div>
-      <div class="skill-grid">
-        <i class="devicon-git-plain skill-icon" title="Git"></i>
-        <i class="devicon-unity-original skill-icon" title="Unity "></i>
-        <i class="devicon-visualstudio-plain skill-icon" title="Visual Studio"></i>
-        <i class="devicon-jenkins-line skill-icon" title="Jenkins"></i>
-        <i class="devicon-docker-plain skill-icon" title="Docker"></i>
-        <i class="devicon-figma-plain skill-icon" title="Figma"></i>
-        <i class="devicon-npm-original-wordmark skill-icon" title="NPM"></i>
+function linkSection() {
+  return (
+    <>
+      <div className="link-grid">
+
+        <div className="link-icon">
+          <i className="bi-file-earmark-person-fill"/>
+          <label className="text-subheader"> Resume</label>
+        </div>
+
+        <div className="link-icon">
+          <i className="devicon-linkedin-plain"/>
+          <label className="text-subheader"> LinkedIn</label>
+        </div>
+
+        <div className="link-icon">
+          <i className="devicon-github-original"/>
+          <label className="text-subheader"> GitHub</label>
+        </div>
+
+        <div className="link-icon">
+          <i className="bi-envelope-paper-heart-fill"/>
+          <label className="text-subheader link-label"> Email</label>
+        </div>
       </div>
     </>
   );
 }
 
-function hobbySection() {
+function skillSection() {
   return (
-    <label className="text-body"> I like to do stuff </label>
-  );
-}
+    <>
+      <div className="text-header skill-header">Languages</div>
+      <div className="skill-grid">
+        <i className="devicon-java-plain skill-icon" title="Java"></i>
+        <i className="devicon-python-plain skill-icon" title="Python"></i>
+        <i className="devicon-csharp-plain skill-icon" title="C#"></i>
+        <i className="devicon-javascript-plain skill-icon" title="JavaScript"></i>
+        <i className="devicon-html5-plain skill-icon" title="HTML"></i>
+        <i className="devicon-css3-plain skill-icon" title="CSS"></i>
+        <i className="devicon-swift-plain skill-icon" title="Swift"></i>
+      </div>
 
-function artSection() {
-  return (
-    <label className="text-body"> Here I will embed things </label>
+      <div className="text-header skill-header">Frameworks + Libraries</div>
+      <div className="skill-grid">
+        <i className="devicon-react-original skill-icon" title="React"></i>
+        <i className="devicon-nodejs-plain skill-icon" title="Node.JS"></i>
+        <i className="devicon-express-original skill-icon" title="Express"></i>
+        <i className="devicon-mysql-plain skill-icon" title="MySQL"></i>
+        <i className="devicon-spring-plain skill-icon" title="Spring"></i>
+        <i className="devicon-selenium-original skill-icon" title="Selenium"></i>
+        <i className="devicon-dotnetcore-plain skill-icon" title=".NET Core"></i>
+      </div>
+
+      <div className="text-header skill-header">Developer Tools</div>
+      <div className="skill-grid">
+        <i className="devicon-git-plain skill-icon" title="Git"></i>
+        <i className="devicon-unity-original skill-icon" title="Unity "></i>
+        <i className="devicon-jenkins-line skill-icon" title="Jenkins"></i>
+        <i className="devicon-docker-plain skill-icon" title="Docker"></i>
+        <i className="devicon-figma-plain skill-icon" title="Figma"></i>
+        <i className="devicon-npm-original-wordmark skill-icon" title="NPM"></i>
+        <i className="devicon-visualstudio-plain skill-icon" title="Visual Studio"></i>
+      </div>
+    </>
   );
 }
 
@@ -209,6 +247,15 @@ function ricoShooterSection() {
     ricoShooterImg,
     "Rico-Shooter",
     "asteroid shooter game for iOS")
+  );
+}
+
+function karRacerSection() {
+  return (projectTemplate(
+    "devicon-csharp-plain", 
+    kartRacerImg,
+    "Kart Racer",
+    "team project build in Unity")
   );
 }
 
