@@ -45,6 +45,9 @@ body {
     padding: 15px !important;
 }
 
+.use-pointer {
+    cursor: pointer;
+}
 
 
 .sidebar {

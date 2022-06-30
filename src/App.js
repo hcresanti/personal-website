@@ -3,14 +3,24 @@ import "./main.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { Link } from "react-scroll"
 
-const googleImgPrefix = "https://drive.google.com/uc?id="
+import reactChatImg from   "./images/message.png"
+import golImg from         "./images/gol.png"
+import ricoShooterImg from "./images/ricoshooter.png"
+import clScannerImg from   "./images/craigslist.png"
+import minecraftImg from   "./images/minecraft.png"
+import kartRacerImg from   "./images/kartracer.png"
 
-const reactChatImg =    "1dobk2mqXYqNpuaqnt8ph0sQjHGbtduu7"
-const golImg =          "1yB4Is-Qehlu1w543uGV3Fz5-pVP62hv8"
-const ricoShooterImg =  "1TSG-vyvfGZCgoEb08ZHva2OlnMPQWhV-"
-const clScannerImg =    "1RXAJmyUpEH1cqpKUEpkQf99NYSg8kj7x"
-const minecraftImg =    "1KB32DVpQvDuD4fTpjfpxY4bBIOYZ8rum"
-const kartRacerImg =    "1UVPdWrYGn-xPA-RJ6cUUqQO2RyvxgAV9"
+const reactChatLink = "https://reactchat-hjc.web.app/"
+const golLink = "https://codepen.io/hcresanti/full/zYKQPbW"
+const ricoShooterLink = "https://drive.google.com/file/d/1bqpt8iSWAAUrdZ198H9rx083S3yZIGmA/view"
+const clScannerLink = "https://github.com/hcresanti/CraigslistScanner"
+const minecraftLink = "https://github.com/hcresanti/Essentials"
+const kartRacerLink = "https://drive.google.com/file/d/10nRmUsRne-54NSX6PA1HkpnbgGdb0z8N/view"
+
+const gitHubLink = "https://github.com/hcresanti"
+const linkedInLink = "https://www.linkedin.com/in/haydencresanti/"
+const emailLink = "mailto:hcresanti@gmail.com"
+const resumeLink = "https://drive.google.com/file/d/17oSGaa9bUgi9ZEUWLFAqWhpTYbg3HzeA/view"
 
 function App() {
 
@@ -25,14 +35,13 @@ function App() {
       <div className="main" id="main">
 
         <div className="name sub margin-t-25">
-          hello! my name is
+          hello world! my name is
         </div>
         <div className="name padding-b-15 margin-b-10">
           Hayden Cresanti
         </div>
 
         { section (introSection())}
-
 
         <div className="name sub padding-tb-10" id="links">
           my links
@@ -61,6 +70,14 @@ function App() {
 }
 
 
+// FUNCTIONS
+
+const openInNewTab = (url) => {
+  const newWindow = window.open(url, '_blank', 'noopener,noreferrer')
+  if (newWindow) newWindow.opener = null
+}
+
+
 
 // TEMPLATES
 
@@ -80,14 +97,14 @@ function projectSection(innerBits) {
   );
 }
 
-function projectTemplate(languageIcon, imgLink, headerText, bodyText) {
+function projectTemplate(languageIcon, projectLink, imgLink, headerText, bodyText) {
   return (
-    <>
+    <div className="use-pointer" onClick={() => openInNewTab(projectLink)}>
       <label className="project-icon">
         <i className={languageIcon + " project-language-icon"}></i>
       </label>
       <div>
-        <img className="project-img" src={googleImgPrefix + imgLink} alt=""/>
+        <img className="project-img" src={imgLink} alt=""/>
       </div>
       <div className="project-header">
         {headerText}
@@ -95,7 +112,7 @@ function projectTemplate(languageIcon, imgLink, headerText, bodyText) {
       <div className="project-body">
         {bodyText}
       </div>
-    </>
+    </div>
   );
 }
 
@@ -108,13 +125,13 @@ function sidebarContent() {
     <>
       <label>👨‍💻</label>
       <div className="sidebar-grid vertical-center">
-        <Link className="bi-house-door-fill sidebar-icon" 
+        <Link className="bi-house-door-fill sidebar-icon use-pointer" 
               to="main" spy={true} smooth={true} duration={500}/>
-        <Link className="bi-share-fill sidebar-icon" 
+        <Link className="bi-share-fill sidebar-icon use-pointer" 
               to="links" spy={true} smooth={true} duration={500}/>
-        <Link className="bi-clipboard-data-fill sidebar-icon" 
+        <Link className="bi-clipboard-data-fill sidebar-icon use-pointer" 
               to="skills" spy={true} smooth={true} duration={500}/>
-        <Link className="bi-easel sidebar-icon" 
+        <Link className="bi-easel sidebar-icon use-pointer" 
               to="projects" spy={true} smooth={true} duration={500}/>
       </div>
     </>
@@ -133,6 +150,9 @@ function introSection() {
       <div className="text-body">
         I received a Bachelor's Degree in Computer Science with a minor in Philosophy
       </div>
+      <div className="text-body">
+        I'm now currently working full time as a software developer for Scienna
+      </div>
     </div>
   )
 }
@@ -142,22 +162,22 @@ function linkSection() {
     <>
       <div className="link-grid">
 
-        <div className="link-icon">
+        <div className="link-icon use-pointer" onClick={() => openInNewTab(resumeLink)}>
           <i className="bi-file-earmark-person-fill"/>
           <label className="text-subheader"> Resume</label>
         </div>
 
-        <div className="link-icon">
+        <div className="link-icon use-pointer" onClick={() => openInNewTab(linkedInLink)}>
           <i className="devicon-linkedin-plain"/>
           <label className="text-subheader"> LinkedIn</label>
         </div>
 
-        <div className="link-icon">
+        <div className="link-icon use-pointer" onClick={() => openInNewTab(gitHubLink)}>
           <i className="devicon-github-original"/>
           <label className="text-subheader"> GitHub</label>
         </div>
 
-        <div className="link-icon">
+        <div className="link-icon use-pointer" onClick={() => openInNewTab(emailLink)}>
           <i className="bi-envelope-paper-heart-fill"/>
           <label className="text-subheader link-label"> Email</label>
         </div>
@@ -208,6 +228,7 @@ function skillSection() {
 function reactChatSection() {
   return (projectTemplate(
       "devicon-react-original", 
+      reactChatLink,
       reactChatImg,
       "React Chat",
       "an iOS-themed online chat")
@@ -217,6 +238,7 @@ function reactChatSection() {
 function minecraftSection() {
   return (projectTemplate(
     "devicon-java-plain-wordmark", 
+    minecraftLink,
     minecraftImg,
     "Minecraft Plugins",
     "various Java-based mods for Minecraft")
@@ -226,6 +248,7 @@ function minecraftSection() {
 function golSection() {
   return (projectTemplate(
     "devicon-javascript-plain", 
+    golLink,
     golImg,
     "Hayden's Game of Life",
     "my spin on Conway's game of life")
@@ -235,6 +258,7 @@ function golSection() {
 function clScannerSection() {
   return (projectTemplate(
     "devicon-python-plain", 
+    clScannerLink,
     clScannerImg,
     "Craigslist Scanner",
     "finds the best Craiglist deals")
@@ -244,6 +268,7 @@ function clScannerSection() {
 function ricoShooterSection() {
   return (projectTemplate(
     "devicon-swift-plain", 
+    ricoShooterLink,
     ricoShooterImg,
     "Rico-Shooter",
     "asteroid shooter game for iOS")
@@ -253,6 +278,7 @@ function ricoShooterSection() {
 function karRacerSection() {
   return (projectTemplate(
     "devicon-csharp-plain", 
+    kartRacerLink,
     kartRacerImg,
     "Kart Racer",
     "team project build in Unity")
