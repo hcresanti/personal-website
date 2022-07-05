@@ -22,6 +22,8 @@ const linkedInLink = "https://www.linkedin.com/in/haydencresanti/"
 const emailLink = "mailto:hcresanti@gmail.com"
 const resumeLink = "https://drive.google.com/file/d/17oSGaa9bUgi9ZEUWLFAqWhpTYbg3HzeA/view"
 
+
+
 function App() {
 
   return (
@@ -29,7 +31,7 @@ function App() {
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css"/>
       
       <div className="sidebar">
-        { sidebarContent() }
+        <SidebarContent/>
       </div>
 
       <div className="main" id="main">
@@ -40,7 +42,6 @@ function App() {
         <div className="name padding-b-15 margin-b-10">
           Hayden Cresanti
         </div>
-
         { section (introSection())}
 
         <div className="name sub padding-tb-10" id="links">
@@ -97,11 +98,11 @@ function projectSection(innerBits) {
   );
 }
 
-function projectTemplate(languageIcon, projectLink, imgLink, headerText, bodyText) {
+function projectTemplate(languageText, languageIcon, projectLink, imgLink, headerText, bodyText) {
   return (
     <div className="use-pointer" onClick={() => openInNewTab(projectLink)}>
       <label className="project-icon">
-        <i className={languageIcon + " project-language-icon"}></i>
+        <i className={languageIcon + " project-language-icon"} data-title={languageText}></i>
       </label>
       <div>
         <img className="project-img" src={imgLink} alt=""/>
@@ -120,7 +121,7 @@ function projectTemplate(languageIcon, projectLink, imgLink, headerText, bodyTex
 
 // CONTENT 
 
-function sidebarContent() {
+function SidebarContent() {
   return (
     <>
       <label>👨‍💻</label>
@@ -148,10 +149,10 @@ function introSection() {
         In 2021 I graduated from the University of Maryland, College Park
       </div>
       <div className="text-body">
-        I received a Bachelor's Degree in Computer Science with a minor in Philosophy
+        I received a Bachelor's degree in Comp Sci with a minor in Philosophy
       </div>
       <div className="text-body">
-        I'm now currently working full time as a software developer for Scienna
+        I'm now currently working full time for Scienna
       </div>
     </div>
   )
@@ -191,35 +192,35 @@ function skillSection() {
     <>
       <div className="text-header skill-header">Languages</div>
       <div className="skill-grid">
-        <i className="devicon-java-plain skill-icon" title="Java"></i>
-        <i className="devicon-python-plain skill-icon" title="Python"></i>
-        <i className="devicon-csharp-plain skill-icon" title="C#"></i>
-        <i className="devicon-javascript-plain skill-icon" title="JavaScript"></i>
-        <i className="devicon-html5-plain skill-icon" title="HTML"></i>
-        <i className="devicon-css3-plain skill-icon" title="CSS"></i>
-        <i className="devicon-swift-plain skill-icon" title="Swift"></i>
+        <i className="devicon-java-plain skill-icon" data-title="Java"></i>
+        <i className="devicon-python-plain skill-icon" data-title="Python"></i>
+        <i className="devicon-csharp-plain skill-icon" data-title="C#"></i>
+        <i className="devicon-javascript-plain skill-icon" data-title="JavaScript"></i>
+        <i className="devicon-html5-plain skill-icon" data-title="HTML"></i>
+        <i className="devicon-css3-plain skill-icon" data-title="CSS"></i>
+        <i className="devicon-swift-plain skill-icon" data-title="Swift"></i>
       </div>
 
       <div className="text-header skill-header">Frameworks + Libraries</div>
       <div className="skill-grid">
-        <i className="devicon-react-original skill-icon" title="React"></i>
-        <i className="devicon-nodejs-plain skill-icon" title="Node.JS"></i>
-        <i className="devicon-express-original skill-icon" title="Express"></i>
-        <i className="devicon-mysql-plain skill-icon" title="MySQL"></i>
-        <i className="devicon-spring-plain skill-icon" title="Spring"></i>
-        <i className="devicon-selenium-original skill-icon" title="Selenium"></i>
-        <i className="devicon-dotnetcore-plain skill-icon" title=".NET Core"></i>
+        <i className="devicon-react-original skill-icon" data-title="React"></i>
+        <i className="devicon-nodejs-plain skill-icon" data-title="Node.JS"></i>
+        <i className="devicon-express-original skill-icon" data-title="Express"></i>
+        <i className="devicon-mysql-plain skill-icon" data-title="MySQL"></i>
+        <i className="devicon-spring-plain skill-icon" data-title="Spring"></i>
+        <i className="devicon-selenium-original skill-icon" data-title="Selenium"></i>
+        <i className="devicon-dotnetcore-plain skill-icon" data-title=".NET Core"></i>
       </div>
 
       <div className="text-header skill-header">Developer Tools</div>
       <div className="skill-grid">
-        <i className="devicon-git-plain skill-icon" title="Git"></i>
-        <i className="devicon-unity-original skill-icon" title="Unity "></i>
-        <i className="devicon-jenkins-line skill-icon" title="Jenkins"></i>
-        <i className="devicon-docker-plain skill-icon" title="Docker"></i>
-        <i className="devicon-figma-plain skill-icon" title="Figma"></i>
-        <i className="devicon-npm-original-wordmark skill-icon" title="NPM"></i>
-        <i className="devicon-visualstudio-plain skill-icon" title="Visual Studio"></i>
+        <i className="devicon-git-plain skill-icon" data-title="Git"></i>
+        <i className="devicon-unity-original skill-icon" data-title="Unity "></i>
+        <i className="devicon-jenkins-line skill-icon" data-title="Jenkins"></i>
+        <i className="devicon-docker-plain skill-icon" data-title="Docker"></i>
+        <i className="devicon-figma-plain skill-icon" data-title="Figma"></i>
+        <i className="devicon-npm-original-wordmark skill-icon" data-title="NPM"></i>
+        <i className="devicon-visualstudio-plain skill-icon" data-title="VS Code"></i>
       </div>
     </>
   );
@@ -227,6 +228,7 @@ function skillSection() {
 
 function reactChatSection() {
   return (projectTemplate(
+      "Built with React",
       "devicon-react-original", 
       reactChatLink,
       reactChatImg,
@@ -237,6 +239,7 @@ function reactChatSection() {
 
 function minecraftSection() {
   return (projectTemplate(
+    "Built with Java",
     "devicon-java-plain-wordmark", 
     minecraftLink,
     minecraftImg,
@@ -247,6 +250,7 @@ function minecraftSection() {
 
 function golSection() {
   return (projectTemplate(
+    "Built with JavaScript",
     "devicon-javascript-plain", 
     golLink,
     golImg,
@@ -257,6 +261,7 @@ function golSection() {
 
 function clScannerSection() {
   return (projectTemplate(
+    "Built with Python",
     "devicon-python-plain", 
     clScannerLink,
     clScannerImg,
@@ -267,6 +272,7 @@ function clScannerSection() {
 
 function ricoShooterSection() {
   return (projectTemplate(
+    "Built with Swift in Xcode",
     "devicon-swift-plain", 
     ricoShooterLink,
     ricoShooterImg,
@@ -277,6 +283,7 @@ function ricoShooterSection() {
 
 function karRacerSection() {
   return (projectTemplate(
+    "Built with C# in Unity",
     "devicon-csharp-plain", 
     kartRacerLink,
     kartRacerImg,

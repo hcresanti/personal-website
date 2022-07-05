@@ -125,7 +125,7 @@ body {
 
 .text-body {
     color: var(--main-color);
-    font-size: 1rem;
+    font-size: 1.2rem;
 }
 
 .link-label {
@@ -229,7 +229,7 @@ body {
     font-size: 20px;
 }
 
-i[title]:hover:after {
+[data-title]:hover:after {
     font-size: 15px;
     border-radius: 10px;
     content: attr(title);
@@ -240,4 +240,6 @@ i[title]:hover:after {
     z-index: 1;
     background: var(--dark-background);
     font-family: "Roboto", sans-serif;
+    width: max-content;
+    content: attr(data-title);
 }
